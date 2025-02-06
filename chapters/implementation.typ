@@ -1,0 +1,3 @@
+#import "../custom.typ": *
+
+= Implementation
