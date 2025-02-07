@@ -10,13 +10,13 @@
   abstract: [],
   department: "",
   meta: (
-    title: "P4 - ...",
-    theme: "ALG & IWP",
-    project_period: "Autumn 2024",
-    project_group: "cs-24-sw-3-xx",
+    title: "P4 - Memory Safety",
+    theme: "...",
+    project_period: "Spring 2025",
+    project_group: "cs-24-sw-3-14",
     participants: (),
     supervisor: (),
-    date: "December 20th",
+    date: "May 28th",
   ),
   body,
 ) = {
