@@ -16,8 +16,8 @@
       (name: "Kristoffer Vestergård Johansson", email: "kjohan23@student.aau.dk"),
       (name: "Mads Ludvig Timm Fagerlund", email: "mfager23@student.aau.dk"),
       (name: "Marc Nygaard", email: "mnygaa23@student.aau.dk"),
-      (name: "Rasmus Hilmar", email: "@student.aau.dk"),
-      (name: "Sebastian Kjældgaard", email: "@student.aau.dk"),
+      (name: "Rasmus Hilmar Precht Christensen", email: "@student.aau.dk"),
+      (name: "Sebastian Kjældgaard Andersen", email: "@student.aau.dk"),
       (name: "Thorbjørn Dige Larsen", email: "tdla23@student.aau.dk")
     ),
     supervisor: (
