@@ -4,7 +4,6 @@
 
 == Language
 We will use american english for this report
-test test test
 
 == Tops and Tails
 Tops will only be used for chapters. 
