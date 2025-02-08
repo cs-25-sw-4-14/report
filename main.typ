@@ -9,7 +9,7 @@
 #show: project.with(
   meta: (
     title: "Memory Safety",
-    theme: "Memory Safety Programming Language",
+    theme: "Memory Safe Programming Language",
     project_period: "Spring Semester 2025",
     project_group: "cs-25-sw-4-14",
     participants: (
