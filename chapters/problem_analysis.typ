@@ -25,15 +25,15 @@ To illustrate this with the grocery list analogy: imagine that a grocery list (a
 Buffer overflow???
 
 
-== Memory Safety Issues in Existing Languages for Embedded Systems
+== Existing Approaches to Memory Safety in Programming Languages
 
-== Common Memory Errors
+== Memory Safety for Embedded Systems
 
-== Challenges of Programming Embedded Systems for Rockets
+=== Issues in Existing Languages for Embedded Systems
+
+== Challenges of Programming Embedded Systems for Satellite Applications
 
 == Overview of ARM Assembly and its Relevance to Embedded Systems
-
-== Existing Approaches to Memory Safety in Programming Languages
 
 == Problem Statement (Refined based on analysis)
 
