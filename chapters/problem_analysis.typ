@@ -11,6 +11,8 @@ Memory safety is the practice of preventing certain types of bugs related to mem
 
 A way of conceptualizing how memory safety vulnerability may arise, can be seen with the analogy of software containing grocery lists stored in arrays. If a list of groceries has 10 items, it consists of 10 memory addresses stored in sequence in the memory. Normally, in a secure system, it should not be possible to access a grocery item stored outside of the array, such as index -1 or 10. However, if proper memory safety precautions have not been taken serious, it may be possible to access memory outside of the grocery list stored. Getting access to memory at index -1 may lead to sensitive information leakage or other serious software concerns. This conceptualization highlights how even seemingly harmless errors in memory access can have significant consequences. .(kilde: https://media.defense.gov/2023/Dec/06/2003352724/-1/-1/0/THE-CASE-FOR-MEMORY-SAFE-ROADMAPS-TLP-CLEAR.PDF, obs same kilde som nr 2) (bedre/mere overgang her) 
 
+== Types of memory safety issues
+
 == Types of memory safety vulnerabilities
 To get a greater understanding of memory safety vulnerabilities, one can look at some of the common types of memory bugs occurring in software programs.
 Out-of-bounds reads
