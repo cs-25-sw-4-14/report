@@ -44,6 +44,9 @@
   #pagebreak(weak: true)
 ]
 
+#include "chapters/theory.typ"
+#pagebreak(weak: true)
+
 #include "chapters/introduction.typ"
 #pagebreak(weak: true)
 
