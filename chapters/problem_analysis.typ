@@ -1,5 +1,6 @@
 #import "../custom.typ": *
 
+
 = Problem Analysis
 
 == Introduction to Memory Safety
@@ -82,8 +83,7 @@ The heap is typically larger than the stack and can grow as needed within the co
 
 
 
-== Types of memory safety issues
-
+== Types of memory safety issues<Types-of-mem-risks>
 
 To achieve a greater understanding of memory safety issues, one can look at some of the common types of memory bugs occurring in software programs.
 
@@ -110,15 +110,84 @@ One major issue arises from the unpredictability of process termination. The OOM
 
 Additionally, the abrupt termination of a critical process can cause system instability, particularly if the affected process has dependencies that are integral to overall system functionality. In database-driven environments, for example, forced termination can result in data corruption or incomplete transactions, requiring extensive recovery efforts. Furthermore, certain applications may not restart automatically, necessitating manual intervention, which can be time-sensitive and operationally costly.
 
-In extreme cases, if the OOM Killer is unable to free sufficient memory, the system may enter a kernel panic state, leading to a complete system failure. To mitigate these risks, administrators can employ various strategies, such as tuning OOM priorities via /proc/\<pid\>/oom_score_adj, using cgroups to enforce memory limits per process, and implementing proactive monitoring tools like oomd or earlyoom to take preemptive actions before an OOM event occurs. Additionally, failover mechanisms or container orchestration tools, such as Kubernetes, can enhance system resilience by ensuring automatic recovery of terminated processes @kernel_oomkill.
+In extreme cases, if the OOM Killer is unable to free sufficient memory, the system may enter a kernel panic state, leading to a complete system failure. To mitigate these risks, administrators can employ various strategies, such as tuning OOM priorities via /proc/\<pid\>/oom_score_adj, using cgroups to enforce memory limits per process, and implementing proactive monitoring tools like oomd or earlyoom to take preemptive actions before an OOM event occurs. Additionally, failover mechanisms or container orchestration tools, such as Kubernetes, can enhance system resilience by ensuring automatic recovery of terminated processes @kernel_oomkill. 
+
+#linebreak()
 
 == Existing Approaches to Memory Safety in Programming Languages
+#linebreak()
+Given the abundance of programming languages, each with its own syntax, features, and approach to the concept of memory safety, it is worth exploring the various available concepts. What are the pros and cons of the different language approaches to memory safety?
+
+The current memory safety approaches adopted by many programming languages fall into four main strategies: Manual Memory Management, Garbage Collection, Ownership and Borrow Checking, Reference Counting @Memory_Safety_Approaches. Influential languages like C and C++ utilize manual memory management to handle memory allocation on electronic devices. This approach requires the programmer to manually manage the allocation and deallocation of memory, which has advantages and disadvantages. @Manual_Memory_Management 
+
+On the positive side, manual memory management allows for optimized memory usage and runtime performance, making these languages particularly suitable for systems that require maximum efficiency in terms of speed and memory consumption. However, this method also presents significant drawbacks. The need for continuous tracking of memory allocation and deallocation can lead to code that is difficult to write and read, increasing the complexity of development. @Manual_Memory_Management
+
+As a result, writing secure code in these languages can be quite challenging, as numerous vulnerabilities can arise, such as memory leaks and dangling pointers. All of the issues discussed in @Types-of-mem-risks are important considerations when programming in languages that employ this manual memory management approach. @Manual_Memory_Management
+
+Secondly, we have the concept of garbage collection, which is utilized by high-level languages such as C\#, Java, and Python. This method addresses some of the significant downsides associated with manual memory management by employing a garbage collector that operates at runtime. The garbage collector tracks and performs memory clean-ups to prevent memory leaks and other vulnerabilities discussed in @Types-of-mem-risks. Additionally, this allows programmers to write more readable and less complex code, as memory management is handled by the garbage collector. The garbage collector works by identifying memory that is no longer pointed to by any variable in the program and then freeing that memory for reuse. @Garbage_Collection,@Memory_Safety_Approaches
+
+However, this convenience comes at a cost, as these languages tend to be significantly slower than those that rely on manual memory management. This is due to the need for the garbage collector to function as a background process throughout the entire runtime, continuously monitoring memory usage to ensure secure memory practices.
+
+An approach aimed at addressing both the slow runtime of garbage collection and the challenges of manual memory management while retaining its advantages is ownership and borrow checking. This principle is exemplified in Rust, a programming language that grants developers low-level control over system resources similar to manual memory management, while also preventing many common errors through compile-time safety checks. By enforcing stringent regulations on resource ownership and access, Rust ensures that each value has a single owner and that any data borrowing is both carefully managed and temporary. This design not only eliminates the need for a garbage collector, thereby avoiding its performance drawbacks, but also alleviates issues such as memory leaks, dangling pointers, and data races. As a result, developers can produce highly performant, concurrent, and reliable software without sacrificing the control afforded by manual memory management. @Rust_Book,@Memory_Safety_Approaches
+
+However, Rust’s ownership and borrowing system also presents some notable challenges. The strict rules can lead to a steep learning curve, particularly for those transitioning from languages that depend on garbage collection or manual memory management. Code must be organized to satisfy the borrow checker, which may occasionally reject valid patterns the compiler cannot verify as safe. This can necessitate refactoring or rethinking certain designs, potentially introducing additional complexity to the code. @Memory_Safety_Approaches
+
+The last approach is reference counting, which is used in languages like Swift. This method involves tracking the number of references to a particular object and deallocating memory when the reference count reaches zero. While reference counting can help prevent memory leaks by automatically freeing memory when it is no longer needed, it can introduce performance overhead due to the need to increment and decrement reference counts for each object. Additionally, reference counting may struggle with cyclic references, where two objects reference each other, preventing their reference counts from reaching zero and leading to memory leaks. @Automatic_Reference_Counting,@Memory_Safety_Approaches
 
 == Memory Safety for Embedded Systems
 
 === Issues in Existing Languages for Embedded Systems
 
+
+
 == Challenges of Programming Embedded Systems for Satellite Applications
+When programming embedded systems for satellite applications a parameter to be aware of is the signal to noise ratio (SNR). This measures the stregth of the recived signal compared to the power of the noise. The higher the SNR the clearer the recieved data will be, due to less interference @signal-to-noise-ratio 
+
+Common types of interference from satelite communication, known as radio noise include: 
+
+#show figure: set block(breakable: true)
+#figure(kind: table, tablex(
+    columns: 2,
+    inset: 5pt,
+    align: horizon,
+    stroke: 0.4pt,
+    map-cells: cell => {
+      
+      cell.fill = luma(280)
+      if cell.y < 1 {
+        cell.content = strong(cell.content)
+        cell.fill = (cell.fill).darken(6%)
+      } 
+      cell.fill = (cell.fill).darken(if calc.odd(cell.y) {0%} else {5%})
+      cell
+    },
+    [Type],[Explaination],
+    [Shot Noise],[],
+    [Thermal Noise],[],
+    [Radiation Noise],[],
+
+
+    ), caption: [Common types of interference in satellite signals ]
+    )<table:interferencetypes>
+
+thermal and shot noise
+https://web.mit.edu/dvp/Public/noise-paper.pdf
+
+radio noise
+https://link.springer.com/chapter/10.1007/978-94-011-7027-7_7
+
+Financial, and environmental challenges
+https://www.captechu.edu/blog/satellite-constellation-technology-management-challenges-and-trends
+
+Interference and jamming 
+https://www.linkedin.com/advice/0/what-challenges-solutions-implementing
+
+supply chain attacks 
+https://www.ndss-symposium.org/wp-content/uploads/spacesec2024-57-paper.pdf
+
+embedded code contraints
+https://www.linkedin.com/pulse/embedded-design-constraints-embedded-hash-v0lvc/
+
 
 == Overview of ARM Assembly and its Relevance to Embedded Systems
 
