@@ -13,9 +13,9 @@ A way of conceptualizing how memory safety vulnerability may arise, can be seen 
 
 == Types of memory safety issues
 
-== Types of memory safety vulnerabilities
-To get a greater understanding of memory safety vulnerabilities, one can look at some of the common types of memory bugs occurring in software programs.
-Out-of-bounds reads
+To achieve a greater understanding of memory safety issues, one can look at some of the common types of memory bugs occurring in software programs.
+
+=== Out-of-bounds reads
 The memory bug illustrated in the grocery list analogy is a classic example of an out-of-bounds read. This occurs when a program reads data from a memory address that lies outside the bounds of the intended data structure, like accessing index -1 or 10 in the grocery list. When this happens, the program may retrieve data that it should not have access to, potentially leading to unintended behavior.
 
 === Out of bounds writes
@@ -26,6 +26,14 @@ A closely related bug to to “Out-of-Bounds reads”, where unintended informat
 To illustrate this with the grocery list analogy: imagine that a grocery list (array) is deleted from memory, but there is still a pointer that references the location where the list was stored. If, at a later point, a new grocery list is created and gets assigned the same memory location as the deleted list, the dangling pointer may still point to that location. As a result, when the program tries to access the memory through that pointer, it could end up retrieving data from the new list rather than the one that was originally intended, leading to unpredictable behavior, sensitive information exposure, or even malicious exploitation of the program.
 Buffer overflow???
 
+=== Out-of-memory Kill
+The Out-of-Memory (OOM) Killer in Linux is a mechanism designed to prevent system crashes by forcibly terminating processes when available memory is critically low. While this feature helps maintain system responsiveness, it can pose significant challenges in environments running critical applications on essential hardware.
+
+One major issue arises from the unpredictability of process termination. The OOM Killer selects processes for termination based on factors such as memory consumption, process priority, and the OOM score—a heuristic that estimates the relative impact of terminating a process. However, this selection mechanism does not inherently account for the operational or business-critical importance of an application. As a result, essential services, such as databases, real-time processing applications, or control systems, may be terminated, leading to service disruptions and potential data loss.
+
+Additionally, the abrupt termination of a critical process can cause system instability, particularly if the affected process has dependencies that are integral to overall system functionality. In database-driven environments, for example, forced termination can result in data corruption or incomplete transactions, requiring extensive recovery efforts. Furthermore, certain applications may not restart automatically, necessitating manual intervention, which can be time-sensitive and operationally costly.
+
+In extreme cases, if the OOM Killer is unable to free sufficient memory, the system may enter a kernel panic state, leading to a complete system failure. To mitigate these risks, administrators can employ various strategies, such as tuning OOM priorities via /proc/\<pid\>/oom_score_adj, using cgroups to enforce memory limits per process, and implementing proactive monitoring tools like oomd or earlyoom to take preemptive actions before an OOM event occurs. Additionally, failover mechanisms or container orchestration tools, such as Kubernetes, can enhance system resilience by ensuring automatic recovery of terminated processes @kernel_oomkill.
 
 == Existing Approaches to Memory Safety in Programming Languages
 
@@ -38,5 +46,3 @@ Buffer overflow???
 == Overview of ARM Assembly and its Relevance to Embedded Systems
 
 == Problem Statement (Refined based on analysis)
-
-
