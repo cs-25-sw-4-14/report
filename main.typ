@@ -39,9 +39,6 @@
 #if render == false [
   #include "chapters/styleguide.typ"
   #pagebreak(weak: true)
-
-  #include "chapters/components.typ"
-  #pagebreak(weak: true)
 ]
 
 #include "chapters/introduction.typ"
