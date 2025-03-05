@@ -3,6 +3,14 @@
 
 = Problem Analysis
 
+== Introduction to Memory Safety
+Memory safety is the practice of preventing certain types of bugs related to memory management in a program. These bugs can have severe consequences, as they often lead to malicious code being ran, program crashes, or data extrapolation.@Memory_safety_org Memory safety vulnerabilities arise when memory is allocated, deallocated, accessed, or modified in unintended ways. These issues are not specific to any single programming paradigm, but can occur in different ways, based on programming languages ways of handling memory.@Memory_safety_roadmap 
+
+The concept of memory safety is deeply rooted in the theoretical foundations of programming languages and their memory models. Low-level memory management, where developers have direct control over memory allocation and deallocation, introduces a higher risk of memory bugs due to the absence of automated safeguards. These bugs arise from improper handling of memory operations, such as accessing freed memory, buffer overflows, or incorrect pointer arithmetic, which can lead to undefined behavior, security vulnerabilities, or system instability. In languages like C and C++, that provide direct memory management functionalities, such errors are common due to the lack of built-in mechanisms to enforce safe memory access. The responsibility falls on the developer to ensure that memory is allocated and deallocated correctly, which increases the likelihood of issues such as memory leaks, use-after-free errors, and stack overflows. These errors arise from the fundamental challenge of tracking memory lifetimes and preventing unintended modifications to memory regions.
+
+To better understand how memory safety bugs occur, the following analogy can be cosidered: A software program storing grocery lists in arrays. This analogy provides a conceptualization of how a memory safety vulnerability may arise If. The program maintains a grocery list containing 10 items, each stored at a consecutive memory address in an array. Normally, in a secure system, it should not be possible to access a grocery item stored outside of the array, such as index -1 or 10. However, if proper memory safety precautions have not been taken serious, it may be possible to access memory outside of the grocery list stored. If the memory at index -1 contains confidential data, an attacker could read it, leading to information leakage. If index 10 belongs to another part of the program, modifying it could cause unintended behavior or crashes. This conceptualization highlights how even seemingly harmless errors in memory access can have significant consequences.@Memory_safety_roadmap
+
+
 == What is Memory?
 
 In a computer, memory is a sequential set of locations that store numbers, characters, or boolean values. Memory is laid out in sequential order and each position in memory has an address. The compiler associates variable names with memory addresses. Some programming languages like C, allow you to ask the computer for the address of a variable in memory using the address operator (`&`). Memory locations are 8 bits long, or one byte.
@@ -73,10 +81,7 @@ Programming languages handle heap memory in different ways. Lower-level language
 
 The heap is typically larger than the stack and can grow as needed within the constraints of available system memory. It provides the foundation for complex data structures like linked lists, trees, and dynamically sized arrays that can expand and contract during program execution. While heap operations are generally slower than stack operations due to the additional overhead of memory management, the flexibility they provide is essential for many programming tasks.
 
-== Explaining Memory Safety
-Memory safety is the practice of preventing certain types of bugs related to memory management in a program. These bugs can have severe consequences, as they often lead to malicious code being ran, program crashes, or data extrapolation (kilde: https://www.memorysafety.org/docs/memory-safety/). Memory safety vulnerabilities arise when memory is allocated, deallocated, accessed, or modified in unintended ways. These issues are not specific to any single programming paradigm, but can occur in different ways, based on programming languages ways of handling memory.(kilde: https://media.defense.gov/2023/Dec/06/2003352724/-1/-1/0/THE-CASE-FOR-MEMORY-SAFE-ROADMAPS-TLP-CLEAR.PDF) Memory itself is stored as sequences of bits, typically representing booleans, in electronic computer space. This space consists of a finite number of memory addresses, each storing values that can be manipulated by a program. These addresses are like spots in a giant warehouse, and the values stored in them are pieces of data that the program works with. (https://www.techtarget.com/whatis/definition/memory) (måske uddybe med cache, RAM, storage osv.)
 
-A way of conceptualizing how memory safety vulnerability may arise, can be seen with the analogy of software containing grocery lists stored in arrays. If a list of groceries has 10 items, it consists of 10 memory addresses stored in sequence in the memory. Normally, in a secure system, it should not be possible to access a grocery item stored outside of the array, such as index -1 or 10. However, if proper memory safety precautions have not been taken serious, it may be possible to access memory outside of the grocery list stored. Getting access to memory at index -1 may lead to sensitive information leakage or other serious software concerns. This conceptualization highlights how even seemingly harmless errors in memory access can have significant consequences. .(kilde: https://media.defense.gov/2023/Dec/06/2003352724/-1/-1/0/THE-CASE-FOR-MEMORY-SAFE-ROADMAPS-TLP-CLEAR.PDF, obs same kilde som nr 2) (bedre/mere overgang her) 
 
 == Types of memory safety issues<Types-of-mem-risks>
 
@@ -93,6 +98,10 @@ An out-of-bounds write is closely related to an out-of-bounds read, but instead 
 A closely related bug to to “Out-of-Bounds reads”, where unintended information is being accessed, is the “Use After Free” vulnerability. This occurs when a program is attempting to access memory that has been freed. This is possible since some programming languages does not clear the pointer to the memory, leading to the existence of a dangling pointer. If the memory of the location the pointer is pointing to gets allocated a different object, it leads to the possibility of accessing that data through the dangling pointer (https://encyclopedia.kaspersky.com/glossary/use-after-free/) . 
 To illustrate this with the grocery list analogy: imagine that a grocery list (array) is deleted from memory, but there is still a pointer that references the location where the list was stored. If, at a later point, a new grocery list is created and gets assigned the same memory location as the deleted list, the dangling pointer may still point to that location. As a result, when the program tries to access the memory through that pointer, it could end up retrieving data from the new list rather than the one that was originally intended, leading to unpredictable behavior, sensitive information exposure, or even malicious exploitation of the program.
 Buffer overflow???
+
+=== Buffer overflow
+
+A buffer overflow is a critical memory safety vulnerability that occurs when a program writes more data to a buffer than it was allocated to hold. This can be done by an attacker who alters the application's execution path, damaging files and corrupting data by overwriting memory. Imagine a grocery list analogy again. Suppose there is a predefined shopping list that holds 10 items. If the list exceeds its capacity and more than 10 items are added, the overflow could overwrite critical information stored in memory that wasn't meant to be modified, potentially leading to program crashes or unpredictable behavior. (https://www.fortinet.com/resources/cyberglossary/buffer-overflow) 
 
 === Out-of-memory Kill
 The Out-of-Memory (OOM) Killer in Linux is a mechanism designed to prevent system crashes by forcibly terminating processes when available memory is critically low. While this feature helps maintain system responsiveness, it can pose significant challenges in environments running critical applications on essential hardware.
@@ -164,16 +173,8 @@ Common types of interference from satelite communication, known as radio noise i
 thermal and shot noise
 https://web.mit.edu/dvp/Public/noise-paper.pdf
 
-
 radio noise
 https://link.springer.com/chapter/10.1007/978-94-011-7027-7_7
-
-
-
-
-
-
-
 
 Financial, and environmental challenges
 https://www.captechu.edu/blog/satellite-constellation-technology-management-challenges-and-trends
