@@ -41,7 +41,19 @@
   #pagebreak(weak: true)
 ]
 
+#include "chapters/theory.typ"
+#pagebreak(weak: true)
+
 #include "chapters/introduction.typ"
+#pagebreak(weak: true)
+
+#include "chapters/problem_analysis.typ"
+#pagebreak(weak: true)
+
+#include "chapters/language_design.typ"
+#pagebreak(weak: true)
+
+#include "chapters/compiler_design.typ"
 #pagebreak(weak: true)
 
 #include "chapters/implementation.typ"
@@ -50,6 +62,14 @@
 #include "chapters/testing.typ"
 #pagebreak(weak: true)
 
+#include "chapters/discussion.typ"
+#pagebreak(weak: true)
+
+#include "chapters/future_work.typ"
+#pagebreak(weak: true)
+
+#include "chapters/conclusion.typ"
+#pagebreak(weak: true)
 
 #bibliography("sources/sources1.bib")
 
