@@ -1,5 +1,6 @@
 #import "../custom.typ": *
 
+
 = Problem Analysis
 
 == What is Memory?
@@ -113,7 +114,7 @@ In extreme cases, if the OOM Killer is unable to free sufficient memory, the sys
 
 
 == Challenges of Programming Embedded Systems for Satellite Applications
-When programming embedded systems for satellite applications a parameter to be aware of is the signal to noise ratio (SNR). This measures the stregth of the recived signal compared to the power of the noise. The higher the SNR the clearer the recieved data will be, due to less interference @signal-to-noise-ratio. 
+When programming embedded systems for satellite applications a parameter to be aware of is the signal to noise ratio (SNR). This measures the stregth of the recived signal compared to the power of the noise. The higher the SNR the clearer the recieved data will be, due to less interference @signal-to-noise-ratio 
 
 Common types of interference from satelite communication, known as radio noise include: 
 
