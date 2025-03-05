@@ -1,6 +1,7 @@
 #import "@preview/showybox:2.0.4": *
 #import "@preview/codly:1.0.0": *
 #import "@preview/dashy-todo:0.0.1": todo
+#import "@preview/tablex:0.0.8": tablex, rowspanx, colspanx, cellx
 
 //####################################//
 //############ CODE BLOCK ############//
