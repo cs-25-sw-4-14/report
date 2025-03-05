@@ -113,6 +113,48 @@ In extreme cases, if the OOM Killer is unable to free sufficient memory, the sys
 
 
 == Challenges of Programming Embedded Systems for Satellite Applications
+When programming embedded systems for satellite applications a parameter to be aware of is the signal to noise ratio (SNR). This measures the stregth of the recived signal compared to the power of the noise. The higher the SNR the clearer the recieved data will be, due to less interference @signal-to-noise-ratio. 
+
+Common types of interference from satelite communication, known as radio noise include: 
+
+#show figure: set block(breakable: true)
+#figure(kind: table, tablex(
+    columns: 2,
+    inset: 5pt,
+    align: horizon,
+    stroke: 0.4pt,
+    map-cells: cell => {
+      
+      cell.fill = luma(280)
+      if cell.y < 1 {
+        cell.content = strong(cell.content)
+        cell.fill = (cell.fill).darken(6%)
+      } 
+      cell.fill = (cell.fill).darken(if calc.odd(cell.y) {0%} else {5%})
+      cell
+    },
+    [Type],[Explaination],
+    [Shot Noise],[],
+    [Thermal Noise],[],
+    [Radiation Noise],[],
+
+
+    ), caption: [Common types of interference in satellite signals ]
+    )<table:interferencetypes>
+
+thermal and shot noise
+https://web.mit.edu/dvp/Public/noise-paper.pdf
+
+
+radio noise
+https://link.springer.com/chapter/10.1007/978-94-011-7027-7_7
+
+
+
+
+
+
+
 
 Financial, and environmental challenges
 https://www.captechu.edu/blog/satellite-constellation-technology-management-challenges-and-trends
