@@ -1,5 +1,6 @@
 #import "../custom.typ": *
 
+
 = Problem Analysis
 
 == What is Memory?
@@ -128,7 +129,64 @@ The last approach is reference counting, which is used in languages like Swift. 
 
 === Issues in Existing Languages for Embedded Systems
 
+
+
 == Challenges of Programming Embedded Systems for Satellite Applications
+When programming embedded systems for satellite applications a parameter to be aware of is the signal to noise ratio (SNR). This measures the stregth of the recived signal compared to the power of the noise. The higher the SNR the clearer the recieved data will be, due to less interference @signal-to-noise-ratio 
+
+Common types of interference from satelite communication, known as radio noise include: 
+
+#show figure: set block(breakable: true)
+#figure(kind: table, tablex(
+    columns: 2,
+    inset: 5pt,
+    align: horizon,
+    stroke: 0.4pt,
+    map-cells: cell => {
+      
+      cell.fill = luma(280)
+      if cell.y < 1 {
+        cell.content = strong(cell.content)
+        cell.fill = (cell.fill).darken(6%)
+      } 
+      cell.fill = (cell.fill).darken(if calc.odd(cell.y) {0%} else {5%})
+      cell
+    },
+    [Type],[Explaination],
+    [Shot Noise],[],
+    [Thermal Noise],[],
+    [Radiation Noise],[],
+
+
+    ), caption: [Common types of interference in satellite signals ]
+    )<table:interferencetypes>
+
+thermal and shot noise
+https://web.mit.edu/dvp/Public/noise-paper.pdf
+
+
+radio noise
+https://link.springer.com/chapter/10.1007/978-94-011-7027-7_7
+
+
+
+
+
+
+
+
+Financial, and environmental challenges
+https://www.captechu.edu/blog/satellite-constellation-technology-management-challenges-and-trends
+
+Interference and jamming 
+https://www.linkedin.com/advice/0/what-challenges-solutions-implementing
+
+supply chain attacks 
+https://www.ndss-symposium.org/wp-content/uploads/spacesec2024-57-paper.pdf
+
+embedded code contraints
+https://www.linkedin.com/pulse/embedded-design-constraints-embedded-hash-v0lvc/
+
 
 == Overview of ARM Assembly and its Relevance to Embedded Systems
 
