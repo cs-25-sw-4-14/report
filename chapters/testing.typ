@@ -2,6 +2,10 @@
 
 = Testing
 
-== Unit and Integration
+== Unit Testing (testing individual components of the compiler)
 
-== User Tests
+== Integration Testing (testing the interaction between compiler components)
+
+== Acceptance Testing (testing against the language requirements and problem statement)
+
+== User Testing (if applicable)
