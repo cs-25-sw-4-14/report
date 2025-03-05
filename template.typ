@@ -37,6 +37,7 @@
   set heading(numbering: "1.1")
   show math.equation: set text(weight: 400)
   show heading: set text(font: sans-font)
+  show selector(heading.where(level: 3)) : set heading(numbering: none)
   show raw: set text(font: mono-font)
   show link: underline
   
@@ -86,7 +87,7 @@
 
         \
         *Copies:* 1\ \
-        *Number of Pages:* #counter(page)\ \
+        *Number of Pages* #context counter(page).final().at(0) \ \
       ],
       [
       *Abstract:*\
