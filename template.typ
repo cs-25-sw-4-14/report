@@ -86,7 +86,7 @@
 
         \
         *Copies:* 1\ \
-        *Number of Pages:* #(locate(loc => counter(page).final(loc).at(0)))\ \
+        *Number of Pages:* #counter(page)\ \
       ],
       [
       *Abstract:*\
@@ -99,7 +99,7 @@
   pagebreak()
 
   // Table of contents.
-  page(outline(depth: 3, indent: true))
+  page(outline(depth: 3, indent: auto))
   
   pagebreak()
   
