@@ -123,7 +123,7 @@ An approach aimed at addressing both the slow runtime of garbage collection and 
 
 However, Rust’s ownership and borrowing system also presents some notable challenges. The strict rules can lead to a steep learning curve, particularly for those transitioning from languages that depend on garbage collection or manual memory management. Code must be organized to satisfy the borrow checker, which may occasionally reject valid patterns the compiler cannot verify as safe. This can necessitate refactoring or rethinking certain designs, potentially introducing additional complexity to the code.
 
-The last approach is reference counting.. 
+The last approach is reference counting, which is used in languages like Swift. This method involves tracking the number of references to a particular object and deallocating memory when the reference count reaches zero. While reference counting can help prevent memory leaks by automatically freeing memory when it is no longer needed, it can introduce performance overhead due to the need to increment and decrement reference counts for each object. Additionally, reference counting may struggle with cyclic references, where two objects reference each other, preventing their reference counts from reaching zero and leading to memory leaks.
 
 == Memory Safety for Embedded Systems
 
