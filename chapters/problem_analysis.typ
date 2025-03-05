@@ -33,7 +33,22 @@ Buffer overflow???
 
 === Issues in Existing Languages for Embedded Systems
 
+
+
 == Challenges of Programming Embedded Systems for Satellite Applications
+
+Financial, and environmental challenges
+https://www.captechu.edu/blog/satellite-constellation-technology-management-challenges-and-trends
+
+Interference and jamming 
+https://www.linkedin.com/advice/0/what-challenges-solutions-implementing
+
+supply chain attacks 
+https://www.ndss-symposium.org/wp-content/uploads/spacesec2024-57-paper.pdf
+
+embedded code contraints
+https://www.linkedin.com/pulse/embedded-design-constraints-embedded-hash-v0lvc/
+
 
 == Overview of ARM Assembly and its Relevance to Embedded Systems
 
